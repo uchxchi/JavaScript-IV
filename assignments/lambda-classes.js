@@ -18,6 +18,7 @@ const objectPerson = new Person({
 })
 
 objectPerson.speak();
+//2
 
 class Instructor extends Person{
     constructor(attr){
@@ -31,10 +32,6 @@ class Instructor extends Person{
 
     }
     grade(student, subject){
-     student = {
-            name: 'Kofi'
-        }
-        subject = 'React'
         
         console.log(`${student.name} recieves a perfect score on ${subject}`)
     }
@@ -50,8 +47,9 @@ const objectInstructor = new Instructor({
 })
 
 objectInstructor.demo('closures');
-objectInstructor.grade();
+objectInstructor.grade({name: 'Kofi'}, 'React');
 
+//3
 class Student extends Person{
     constructor(attr){
         super(attr);
@@ -60,25 +58,30 @@ class Student extends Person{
         this.favSubjects = attr.favSubjects;
     }
     listsSubjects(){
-        console.log(this.favSubjects);
+    this.favSubjects.forEach(subject => {
+            console.log(subject)
+        });
     }
-    PRAssignment(student, subject){
-        console.log(`${student.name} has submitted a PR for ${subject}`)
+    PRAssignment(subject){
+        console.log(`${this.name} has submitted a PR for ${subject}`)
     }
-    sprintChallenge(student, subject){
-        console.log(`${student.name} has begun sprint challenge on ${subject}`)
+    sprintChallenge(subject){
+        console.log(`${this.name} has begun sprint challenge on ${subject}`)
     }
 }
 
 const objectStudent = new Student({
+    name: 'Kwame',
     previousBackground: 'computer science',
     className: 'CS132',
     favSubjects: ['HTML', 'CSS', 'JavaScript']
 })
 
 objectStudent.listsSubjects();
-objectStudent.PRAssignment('tt', 'Js1');
-objectStudent.sprintChallenge('', 'js1');
+objectStudent.PRAssignment('Js1');
+objectStudent.sprintChallenge('js1');
+
+//4
 
 class ProjectManager extends Instructor{
     constructor(attr){
@@ -101,4 +104,4 @@ const objectProjectManager = new ProjectManager({
 })
 
 objectProjectManager.standUp('buzzy');
-objectProjectManager.debugsCode('', 'js1');
+objectProjectManager.debugsCode(objectStudent, 'js1');
